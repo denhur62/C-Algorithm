@@ -1,0 +1,7 @@
+﻿  CMethod.c
+c:\users\denhu\documents\visual studio 2015\projects\연결리스트 구현\연결리스트 구현\cmethod.c(31): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\visual studio 2015\projects\연결리스트 구현\연결리스트 구현\cmethod.c(33): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+  연결리스트 구현.vcxproj -> c:\users\denhu\documents\visual studio 2015\Projects\연결리스트 구현\Debug\연결리스트 구현.exe
+  연결리스트 구현.vcxproj -> c:\users\denhu\documents\visual studio 2015\Projects\연결리스트 구현\Debug\연결리스트 구현.pdb (Full PDB)

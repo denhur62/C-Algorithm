@@ -51,7 +51,7 @@ void addNode(Node* L, int data) {
 Node* merge(Node* L1, Node* L2) {
 
 	Node* mergedList = NULL;
-
+	Node *Runner = NULL;
 	if (L1 == NULL)
 		return L2;
 	if (L2 == NULL)
@@ -66,7 +66,15 @@ Node* merge(Node* L1, Node* L2) {
 		mergedList->next = merge(L1, L2->next);
 	}
 
+	Runner = mergedList;
+	while (Runner!= NULL)
+	{
+		printf(" %d",Runner->data);
+		Runner = Runner->next;
+	}
+	printf("\n");
 	return mergedList;
+
 }
 
 Lists mg_partition(Node* L, int k) {
@@ -101,6 +109,7 @@ void mergeSort(Node** L) {
 	Lists lists = mg_partition(*L, k);
 	mergeSort(&lists.L1);
 	mergeSort(&lists.L2);
+
 	*L = merge(lists.L1, lists.L2);
 }
 

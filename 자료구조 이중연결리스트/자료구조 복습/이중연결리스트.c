@@ -9,6 +9,7 @@ typedef struct List {
 	struct Node *head;
 	struct Node *tail;
 }List;
+//처음에 리스트 생성
 List* listFirst() {
 	List *list = (List*)malloc(sizeof(List));
 	list->head = (Node*)malloc(sizeof(Node));
@@ -17,7 +18,8 @@ List* listFirst() {
 	list->tail->prev = list->head;
 	return list;
 }
-void listAdd(List *list,int index,char data) {
+//연결해 나가는 과정
+void listAdd(List *list, int index, char data) {
 	Node *node = (Node*)malloc(sizeof(Node));
 	Node *runner;
 	runner = list->head;
@@ -43,26 +45,30 @@ void listAdd(List *list,int index,char data) {
 			node->prev = runner;
 		}
 		else {
+
 			while (index > 1) {
 				runner = runner->next;
 				index--;
-				if (runner == NULL) {
+				if (runner== list->tail) {
 					printf("invalid position\n");
-					break;
+					return;
 				}
 			}
-			node->next = runner->next;
-			runner->next->prev = node;
-			runner->next = node;
-			node->prev = runner;
+				node->next = runner->next;
+				runner->next->prev = node;
+				runner->next = node;
+				node->prev = runner;
+			
 		}
 	}
 }
-void listRemove(List *list,int index) {
+// 리스트 삭제해 나가는 과정
+void listRemove(List *list, int index) {
 	Node *remove = NULL;
 	Node *runner = list->head;
+
 	if (index == 1) {
-		if(list->head->next==list->tail){
+		if (list->head->next == list->tail) {
 			printf("invalid position\n");
 		}
 		else {
@@ -73,21 +79,25 @@ void listRemove(List *list,int index) {
 		}
 	}
 	else {
+
 		while (index > 1) {
 			runner = runner->next;
-			if (runner == NULL) {
-				printf("invalid position\n");
-				break;
-			}
 			index--;
+			if (runner->next ==list->tail) {
+				printf("invalid position\n");
+				return;
+			}
+			
 		}
-		remove = list->head->next;
-		runner->next = remove->next;
-		remove->next->prev = runner;
-		free(remove);
+			remove = runner->next;
+			runner->next = remove->next;
+			remove->next->prev = runner;
+			free(remove);
+		
 
 	}
 }
+//출력
 void listCircle(List *list) {
 	Node* horse = list->head;
 
@@ -97,15 +107,15 @@ void listCircle(List *list) {
 	}
 	printf("\n");
 }
+//해당하는 값 얻기
 void listGet(List *list, int index) {
-
-	Node *runner=list->head;
-	if (index == 1) {
-		if(runner->next!=list->tail)
-		printf("%c\n", runner->next->data);
+	Node *runner = list->head;
+	if (index == 1 ) {
+		if (runner->next != list->tail)
+			printf("%c\n", runner->next->data);
 		else
 			printf("invalid position\n");
-		
+
 	}
 	else {
 
@@ -118,14 +128,23 @@ void listGet(List *list, int index) {
 				return;
 			}
 		}
-		printf("%c\n",runner->data);
+		printf("%c\n", runner->data);
+	}
+}
+void freeNode(List * list) {
+	Node * cur = list->head;
+	Node * tmp;
+	while (cur !=list->tail) {
+		tmp = cur;
+		cur = cur->next;
+		free(tmp);
 	}
 }
 int main() {
-	List *list = NULL ;
+	List *list = NULL;
 	int a;
 	list = listFirst();
-	scanf("%d",&a);
+	scanf("%d", &a);
 	getchar();
 	while (a--) {
 		char order, ch;
@@ -163,4 +182,5 @@ int main() {
 			break;
 		}
 	}
+	freeNode(list);
 }

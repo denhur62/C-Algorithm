@@ -1,0 +1,11 @@
+﻿  3.c
+c:\users\denhu\documents\visual studio 2015\projects\해시테이블\해시테이블\3.c(61): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\visual studio 2015\projects\해시테이블\해시테이블\3.c(70): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\visual studio 2015\projects\해시테이블\해시테이블\3.c(72): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\visual studio 2015\projects\해시테이블\해시테이블\3.c(76): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+  해시테이블.vcxproj -> c:\users\denhu\documents\visual studio 2015\Projects\해시테이블\Debug\해시테이블.exe
+  해시테이블.vcxproj -> c:\users\denhu\documents\visual studio 2015\Projects\해시테이블\Debug\해시테이블.pdb (Full PDB)

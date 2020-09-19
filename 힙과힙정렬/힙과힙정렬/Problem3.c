@@ -10,7 +10,6 @@ void swap(int *a, int *b) {
 }
 void downHeap(int i) {
 
-
 	int index = i, child;
 	while (index <= N / 2) {
 		child = index * 2;

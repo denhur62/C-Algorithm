@@ -34,15 +34,15 @@ void rBuildHeap(int index) {
 	downHeap(index);
 	
 }
-void printHeap() {
-	for (int i = 1; i <= N; i++)
-		printf(" %d", H[i]);
-	printf("\n");
-}
 void buildHeap() {
 
 	for (int i = N / 2; i >= 1; i--)
 		downHeap(i);
+}
+void printHeap() {
+	for (int i = 1; i <= N; i++)
+		printf(" %d", H[i]);
+	printf("\n");
 }
 int main() {
 	int num;
@@ -52,8 +52,8 @@ int main() {
 		scanf("%d",&H[i]);
 	}
 	if (num % 2 == 0)
-		rBuildHeap(1);
+		rBuildHeap(1);  //Àç±Í
 	else
-		buildHeap();
+		buildHeap();   //ºñÀç±Í
 	printHeap();
 }

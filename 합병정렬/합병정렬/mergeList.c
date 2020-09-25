@@ -1,105 +1,155 @@
 #include<stdio.h>
 #include<stdlib.h>
-
 typedef struct Node {
-	struct Node* next;
 	int data;
-} Node;
-
-typedef struct Lists {
-	Node* L1;
-	Node* L2;
-} Lists;
-
-Node* createNode(int data) {
-	Node* newNode = (Node*)malloc(sizeof(Node));
+	struct Node * next;
+}Node;
+typedef struct List {
+	struct Node * head;
+}List;
+Node * getNode(int nData) {
+	Node * newNode = (Node*)malloc(sizeof(Node));
+	newNode->data = nData;
 	newNode->next = NULL;
-	newNode->data = data;
-
 	return newNode;
 }
-void addNode(Node *node,int index) {
-	Node *newNode = createNode(index);
-	Node *Runner = node;
-	if (node == NULL)
-		node = newNode;
-	else {
-		while (Runner->next != NULL) {
-			Runner = Runner->next;
-		}
-		Runner->next = newNode;
+void addLast(List *L, int data) {
+	Node * cur = L->head;
+	Node * node = getNode(data);
+	if (L->head == NULL) {
+		L->head = node;
+		return;
 	}
+	while (cur->next != NULL) {
+		cur = cur->next;
+	}
+	cur->next = node;
+	return;
 
 }
-int findLength(Node *node) {
-	Node *Runner = node;
+void printList(List*L) {
+	Node*cur = L->head;
+	while (cur != NULL)
+	{
+		printf(" %d", cur->data);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+int sizeList(List*L) {//리스트 사이즈 구하기 함수..
+	Node*cur = L->head;
 	int cnt = 0;
-	while (Runner != NULL) {
+	while (cur != NULL) {
 		cnt++;
-		Runner = Runner->next;
+		cur = cur->next;
 	}
 	return cnt;
 }
-Node* merge(Node *L1, Node *L2) {
-	Node *newNode = NULL;
-	if (L1 == NULL)
-		return L2;
-	if (L2 == NULL)
-		return L1;
-	if (L1->data < L2->data) {
-		newNode = L1;
-		newNode->next = merge(L1->next, L2);
+List partition(List* L, int k) {//K=5/2 = 2
+	int cnt = 0;
+	Node * tmp;
+	Node * cur = L->head;
+	List L2;
+	while (cnt != k) {
+		cnt++;
+		tmp = cur;
+		cur = cur->next;
 	}
-	else {
-		newNode = L2;
-		newNode->next = merge(L1, L2->next);
-	}
-	return newNode;
-}
-Lists partition(Node *node,int key) {
-	
-	Node *L1 = node;
-	Node *L2 = node;
-	Node *Runner = node, *before = NULL;
-	int index = 0;
-	while (index < key / 2) {
-		before = Runner;
-		Runner = Runner->next;
-		index++;
-	}
-	L2 = Runner;
-	before->next = NULL;
-	Lists list = { L1, L2 };
-	return list;
-}
-void mergeSort(Node **node) {
-	int key = findLength(*node);
-	if (key < 2)
-		return;
-	Lists list = partition(*node,key);
-	mergeSort(&list.L1);
-	mergeSort(&list.L2);
-	*node=merge(list.L1, list.L2);
-
+	tmp->next = NULL;
+	L2.head = cur;
+	return L2;
 }
 
-void printNode(Node *node) {
-	Node *Runner = node;
-	while (Runner!=NULL) {
+void print(Node*head) {
+	Node*cur = head;
+	while (cur != NULL) {
+		printf(" %d", cur->data);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+Node* merge(List*L1, List*L2) {
+	List L;//empty
+	Node*H = NULL;
+	Node*Runner = NULL;
+	Node*cur = H;
+	Node*cur1 = L1->head;
+	Node*cur2 = L2->head;
+	while (cur1 != NULL && cur2 != NULL) {
+		if (cur1->data < cur2->data) {
+			if (H == NULL) {
+				H = cur1;
+				cur = cur1;
+				cur1 = cur1->next;
+				cur->next = NULL;
+			}
+			else {
+				cur->next = cur1;
+				cur1 = cur1->next;
+				cur = cur->next;
+				cur->next = NULL;
+			}
+		}
+		else {
+			if (H == NULL) {
+				H = cur2;
+				cur = cur2;
+				cur2 = cur2->next;
+				cur->next = NULL;
+			}
+			else {
+				cur->next = cur2;
+				cur2 = cur2->next;
+				cur = cur->next;
+				cur->next = NULL;
+			}
+		}
+	}
+	while (cur1 != NULL) {
+		cur->next = cur1;
+		cur1 = cur1->next;
+		cur = cur->next;
+		cur->next = NULL;
+	}
+
+	while (cur2 != NULL) {
+		cur->next = cur2;
+		cur2 = cur2->next;
+		cur = cur->next;
+		cur->next = NULL;
+	}
+	Runner = H;
+	while (Runner != NULL) {
 		printf("%d ",Runner->data);
 		Runner = Runner->next;
 	}
 	printf("\n");
+	return H;
+}
+void mergeSort(List * L) {
+	List L2, L1;
+	Node*h;
+	if (sizeList(L) <= 1)
+		return;
+	L2 = partition(L, sizeList(L) / 2);//partitiON
+	L1 = *L;
+	mergeSort(&L1);//L1에 대한 재귀호출
+	mergeSort(&L2);//L2에 대한 재귀호출	
+
+	h = merge(&L1, &L2);
+	L->head = h;
 }
 int main() {
-	Node *node = NULL;
-	int a,index;
-	scanf("%d",&a);
-	for (int i = 0; i < a; i++) {
-		scanf("%d",&index);
-		addNode(&node,index);
+	int n;
+	int data;
+	List L;
+	L.head = NULL;
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &data);
+		addLast(&L, data);
 	}
 
-	mergeSort(&node,a);
-	printNode(node);
+	mergeSort(&L);
+	printList(&L);
 }

@@ -1,2 +1,8 @@
-﻿  합병정렬.vcxproj -> C:\Users\denhu\Documents\GitHub\C-Algorithm\합병정렬\Debug\합병정렬.exe
-  합병정렬.vcxproj -> C:\Users\denhu\Documents\GitHub\C-Algorithm\합병정렬\Debug\합병정렬.pdb (Full PDB)
+﻿  mergeMax.c
+c:\users\denhu\documents\visual studio 2015\projects\합병정렬\합병정렬\mergemax.c(25): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\visual studio 2015\projects\합병정렬\합병정렬\mergemax.c(27): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\visual studio 2015\projects\합병정렬\합병정렬\mergemax.c(7): warning C4716: 'Max': 값을 반환해야 합니다.
+  합병정렬.vcxproj -> C:\Users\denhu\Documents\Visual Studio 2015\Projects\합병정렬\Debug\합병정렬.exe
+  합병정렬.vcxproj -> C:\Users\denhu\Documents\Visual Studio 2015\Projects\합병정렬\Debug\합병정렬.pdb (Full PDB)

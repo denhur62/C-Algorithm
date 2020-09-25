@@ -18,5 +18,14 @@
     <ClCompile Include="mergeSort.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="mergearray.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mergeList.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mergeMax.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

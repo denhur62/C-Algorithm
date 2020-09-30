@@ -563,6 +563,10 @@
 >>```
 >>
 >>나머지는 퀵정렬에 기재 해둠.
+>>
+>>퀵정렬 비재귀로 구현하기:https://noel-embedded.tistory.com/1096
+>>
+>>https://danamoni.tistory.com/entry/qsort%EC%97%90-%EA%B4%80%ED%95%9C-%EB%AA%A8%EB%93%A0-%EA%B2%83
 >
 >#### 합병 정렬과 퀵정렬 비교
 >

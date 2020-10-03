@@ -20,7 +20,7 @@ int isStackEmpty() {
 }
 void quicksort(int arr[], int l,int r) {
 	int q, toright, toleft,temp;
-	push(r-1);
+	push(r);
 	push(l);
 	while (!isStackEmpty()) {
 		l = pop();

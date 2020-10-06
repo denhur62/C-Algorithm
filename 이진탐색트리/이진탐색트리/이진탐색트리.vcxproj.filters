@@ -24,5 +24,8 @@
     <ClCompile Include="AVLRemove.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="비재귀 이진트리.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

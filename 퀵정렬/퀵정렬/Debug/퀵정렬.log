@@ -1,7 +1,9 @@
-﻿  quickStack.c
-c:\users\denhu\documents\github\c-algorithm\퀵정렬\퀵정렬\quickstack.c(71): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+﻿  quickSelection.c
+c:\users\denhu\documents\github\c-algorithm\퀵정렬\퀵정렬\quickselection.c(36): warning C4033: 'quickSelect'은(는) 값을 반환해야 합니다.
+c:\users\denhu\documents\github\c-algorithm\퀵정렬\퀵정렬\quickselection.c(48): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
-c:\users\denhu\documents\github\c-algorithm\퀵정렬\퀵정렬\quickstack.c(73): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\denhu\documents\github\c-algorithm\퀵정렬\퀵정렬\quickselection.c(50): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\github\c-algorithm\퀵정렬\퀵정렬\quickselection.c(45): warning C4715: 'quickSelect': 모든 제어 경로에서 값을 반환하지는 않습니다.
   퀵정렬.vcxproj -> C:\Users\denhu\Documents\GitHub\C-Algorithm\퀵정렬\Debug\퀵정렬.exe
   퀵정렬.vcxproj -> C:\Users\denhu\Documents\GitHub\C-Algorithm\퀵정렬\Debug\퀵정렬.pdb (Full PDB)

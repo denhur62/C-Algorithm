@@ -21,5 +21,8 @@
     <ClCompile Include="quickStack.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="quickSelection.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

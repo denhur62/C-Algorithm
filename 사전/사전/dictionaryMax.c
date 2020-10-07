@@ -2,13 +2,10 @@
 #include<stdlib.h>
 int findElement(int *arr, int l, int r, int k) {
 	int mid;
-	if (l == r) {
-		if (k >= arr[r])
-			return r;
-		if (k < arr[r])
-			return r-1;
-	}
-
+	if (arr[l] > k)
+		return l - 1;
+	if (l == r) 
+		return r;
 	mid = (l + r) / 2;
 	if (k == arr[mid])
 		return mid;

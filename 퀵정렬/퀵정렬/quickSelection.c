@@ -15,7 +15,7 @@ int partition(int arr[],int l,int r) {
 			i++;
 		while(i <= j && arr[j] > arr[r])
 			j--;
-		if (i < j) {
+		if (i <= j) {
 			temp = arr[i];
 			arr[i] = arr[j];
 			arr[j] = temp;

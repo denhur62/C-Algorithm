@@ -1,10 +1,10 @@
 ﻿  6-7.c
-c:\users\denhu\documents\visual studio 2015\projects\힙과힙정렬\힙과힙정렬\6-7.c(29): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\denhur\onedrive\문서\github\c-algorithm\힙과힙정렬\힙과힙정렬\6-7.c(43): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
-c:\users\denhu\documents\visual studio 2015\projects\힙과힙정렬\힙과힙정렬\6-7.c(31): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\denhur\onedrive\문서\github\c-algorithm\힙과힙정렬\힙과힙정렬\6-7.c(45): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
-c:\users\denhu\documents\visual studio 2015\projects\힙과힙정렬\힙과힙정렬\6-7.c(33): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\denhur\onedrive\문서\github\c-algorithm\힙과힙정렬\힙과힙정렬\6-7.c(47): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
-c:\users\denhu\documents\visual studio 2015\projects\힙과힙정렬\힙과힙정렬\6-7.c(27): warning C4716: 'buildHeap': 값을 반환해야 합니다.
-  힙과힙정렬.vcxproj -> C:\Users\denhu\documents\visual studio 2015\Projects\힙과힙정렬\Debug\힙과힙정렬.exe
-  힙과힙정렬.vcxproj -> C:\Users\denhu\documents\visual studio 2015\Projects\힙과힙정렬\Debug\힙과힙정렬.pdb (Full PDB)
+c:\users\denhur\onedrive\문서\github\c-algorithm\힙과힙정렬\힙과힙정렬\6-7.c(27): warning C4716: 'buildHeap': 값을 반환해야 합니다.
+  힙과힙정렬.vcxproj -> C:\Users\denhur\OneDrive\문서\GitHub\C-Algorithm\힙과힙정렬\Debug\힙과힙정렬.exe
+  힙과힙정렬.vcxproj -> C:\Users\denhur\OneDrive\문서\GitHub\C-Algorithm\힙과힙정렬\Debug\힙과힙정렬.pdb (Full PDB)

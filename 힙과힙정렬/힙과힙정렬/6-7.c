@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 int H[100];
-int N,M;
+int N, M;
 void swap(int *a, int *b) {
 	int temp = *a;
 	*a = *b;
@@ -19,21 +19,31 @@ void downHeap(int index) {
 		else
 			break;
 	}
-		
+
 }
 int buildHeap() {
 	for (int i = N / 2; i >= 1; i--)
 		downHeap(i);
 }
+void printHeap(int n) {
+
+	if (n > N)
+		return;
+	if (H[n] <= M)
+		printf("%d ",H[n]);
+
+	if (H[n * 2] > M && H[n * 2 + 1] > M)
+		return;
+	
+		printHeap(n * 2);
+		printHeap(n * 2 + 1);
+}
 int main() {
-	scanf("%d",&N);
+	int cnt = 0;
+	scanf("%d", &N);
 	for (int i = 1; i <= N; i++)
-		scanf("%d",&H[i]);
+		scanf("%d", &H[i]);
 	buildHeap();
-	scanf("%d",&M);
-	while (M >= H[1]) {
-		printf("%d ", H[1]);
-		H[1] = H[N--];
-		buildHeap();
-	}
+	scanf("%d", &M);
+	printHeap(1);
 }

@@ -24,6 +24,9 @@
     <ClCompile Include="Problem3.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="6-6.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="6-7.c">
       <Filter>소스 파일</Filter>
     </ClCompile>

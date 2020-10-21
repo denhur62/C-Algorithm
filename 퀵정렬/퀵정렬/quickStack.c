@@ -42,8 +42,7 @@ void quicksort(int arr[], int l,int r) {
 					temp = arr[toright];
 					arr[toright] = arr[toleft];
 					arr[toleft] = temp;
-					toright++;
-					toleft--;
+					
 				}
 			}
 

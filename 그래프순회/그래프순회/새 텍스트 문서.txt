@@ -1,0 +1,205 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+#define EDGE_HEADER INT_MIN
+typedef enum { false, true } bool;
+
+typedef struct Edge {
+	struct Edge *next;
+	int connectedNodeNumber;
+} Edge;
+
+typedef struct Node {
+	int nodeNumber;
+	int lowNumber;
+	Edge *incidenceLists;
+} Node;
+
+// 정점의 개수, 간선의 개수, 정점 시작 번호 
+int n, m, s,visit,*cutVertex,cvCount;
+bool *visited;
+Node **graph;
+
+Edge* createEdge(int nodeNumber) {
+	Edge *newEdge = (Edge*)malloc(sizeof(Edge));
+	newEdge->next = NULL;
+	newEdge->connectedNodeNumber = nodeNumber;
+
+	return newEdge;
+}
+
+void createGraph() {
+
+	graph = (Node*)malloc((n + 1) * sizeof(Node*));
+	visited = (bool*)malloc((n + 1) * sizeof(bool));
+	cutVertex = (int*)malloc(n * sizeof(int));
+	cvCount = 0;
+	visit = 0;
+	for (int i = 1; i <= n; ++i) {
+		graph[i] = (Node*)malloc(sizeof(Node));
+		graph[i]->incidenceLists = createEdge(EDGE_HEADER);
+		graph[i]->nodeNumber = i;
+
+		visited[i] = false;
+	}
+}
+
+void insertEdge(int a, int b) {
+
+	Edge *horse = graph[a]->incidenceLists;
+
+	// 지금 horse 다음에 추가하기
+	// 시작이 빈칸 헤더
+	while (horse->next != NULL) {
+		if (horse->next->connectedNodeNumber > b)
+			break;
+
+		horse = horse->next;
+	}
+
+	Edge *newEdge = createEdge(b);
+	Edge *nextEdge = horse->next;
+
+	horse->next = newEdge;
+	newEdge->next = nextEdge;
+
+	// b 에도 추가 
+	horse = graph[b]->incidenceLists;
+
+	while (horse->next != NULL) {
+		if (horse->next->connectedNodeNumber > a)
+			break;
+
+		horse = horse->next;
+	}
+
+	newEdge = createEdge(a);
+	nextEdge = horse->next;
+
+	horse->next = newEdge;
+	newEdge->next = nextEdge;
+}
+
+void findDFS(int nodeNumber,int vparent) {
+	visited[nodeNumber] = true;
+	int child = 0;
+	printf("%d\n", nodeNumber);
+	Node *parentNode= graph[vparent];
+	Node *neighborNode;
+	Node *node = graph[nodeNumber];
+	node->lowNumber = visit;
+	Edge *edgeLists = node->incidenceLists->next;
+
+	while (edgeLists != NULL) {
+		int nb = edgeLists->connectedNodeNumber;
+		if (nb == vparent) {
+			edgeLists = edgeLists->next;
+			continue;
+		}
+			
+
+		if (!visited[nb]) {
+			child++;
+			++visit;
+			findDFS(nb, nodeNumber);
+		}
+
+		neighborNode = graph[edgeLists->connectedNodeNumber];
+		if ( node->lowNumber > neighborNode->lowNumber )
+			node->lowNumber = neighborNode->lowNumber;
+		edgeLists = edgeLists->next;
+	}
+
+	if (vparent == -1 ) {
+		if(child >= 2)
+		cutVertex[++cvCount] = nodeNumber;
+	}
+	else {
+		int flag = 0;
+		if (vparent != s && node->lowNumber >= parentNode->lowNumber) {
+			for (int i = 1; i <= cvCount; i++) {
+				if (cutVertex[i] == vparent) {
+					flag = 1;
+					break;
+				}
+			}
+			if(flag ==0)
+				cutVertex[++cvCount] = vparent;
+		}
+			
+	}
+	
+	
+}
+
+void freeGraph() {
+
+	free(graph[0]);
+	for (int i = 1; i <= n; ++i) {
+
+		Edge *horse = graph[i]->incidenceLists;
+		Edge *next = horse->next;
+
+		while (next != NULL) {
+			free(horse);
+			horse = next;
+			next = next->next;
+		}
+		free(horse);
+		free(graph[i]);
+	}
+	free(graph);
+}
+void QuickSort(int arr[], int left, int right) {
+	int L = left, R = right;
+	int temp;
+	int pivot = arr[(left + right) / 2]; //피봇 위치(중앙)의 값을 받음.
+																		//아래의 while문을 통하여 pivot 기준으로 좌, 우 크고 작은 값 나열. = Partition
+	while (L <= R) {
+
+		//pivot이 중간 값이고, 비교 대상 arr[L], arr[R]은 pivot과 비교하니 중간 지점을 넘어가면 종료로 볼 수 있음.
+		while (arr[L] < pivot) //left부터 증가하며 pivot 이상의 값을 찾음.
+			L++;
+		while (arr[R] > pivot) //right부터 감소하며 pivot 이하 값을 찾음.
+			R--;
+		//L, R 모두 최대 pivot 위치까지 이동.
+
+		if (L <= R) { //현재 L이 R이하면. (이유 : L>R 부분은 이미 정리가 된 상태임).
+			if (L != R) { //같지 않은 경우만.
+				temp = arr[L];
+				arr[L] = arr[R];
+				arr[R] = temp;
+			} //L과 R이 같다면 교환(SWAP)은 필요 없고 한 칸씩 진행만 해주면 됨.
+			L++; R--; //그리고 L,R 한 칸 더 진행.
+
+
+			
+		}
+	}
+	
+
+	
+	if (left < R)
+		QuickSort(arr, left, R);
+	if (L < right)
+		QuickSort(arr, L, right);
+}
+int main() {
+
+	scanf("%d%d%d", &n, &m, &s);
+	createGraph();
+
+	int edgeNum1, edgeNum2;
+
+	for (int i = 0; i<m; ++i) {
+		scanf("%d%d", &edgeNum1, &edgeNum2);
+		insertEdge(edgeNum1, edgeNum2);
+	}
+
+	findDFS(s,-1);
+	QuickSort(cutVertex,1,cvCount);
+	printf("%d\n",cvCount);
+	for (int i = 1; i <= cvCount; i++)
+		printf("%d ",cutVertex[i]);
+	//freeGraph();
+}

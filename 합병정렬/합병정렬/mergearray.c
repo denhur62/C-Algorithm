@@ -22,6 +22,7 @@ void Merge(int l,int middle,int r) {
 	for (int k = l; k <= r; k++)
 		sorted[k] = B[k];
 }
+
 void rMergeSort(int l, int r) {
 	if (l < r) {
 		int middle = (l + r) / 2;

@@ -1105,6 +1105,10 @@
 >#### 비트리 간선
 >
 >>![image-20201113212054286](README.assets/image-20201113212054286.png)
+>>
+>>[이중연결요소](https://m.blog.naver.com/kks227/220802704686)
+>>
+>>
 >
 >#### 방향 그래프(directd graph)
 >
@@ -1118,15 +1122,29 @@
 >>
 >>트리간선: w가 v의 자식이다.
 >>
->>후향간선: w가 v의조상이다.
+>>후향간선(역방향 간선): w가 v의조상이다.
 >>
->>정향간선: w가 v의 자손이다.
+>>전향간선(순방향 간선): w가 v의 자손이다. 
+>>
+>>//무향그래프에서는 후향간선, 전향간선 구분이 없다. 
 >>
 >>교차간선: w가 v와 동일한 레벨 또는 직계가 아닌 다음 레벨에 위치한다. (c,e)도 교차간선
 
-#### 강연결성
+#### 강한 결합 요소 SCC(Strongly Connected Component)
 
+>방향그래프 G의 어느 두 정점 u,v에 대해서나 u는 v에 도달하며 v는 u에 도달하면 G를 강연결이라고 한다.
 >
+>강연결성을 확인하는 방법은 코사라주 알고리즘과 타잔 알고리즘이 있다.
+>
+>![image-20201121185716811](README.assets/image-20201121185716811.png)
+>
+>위의 사진방법이 코사라주 알고리즘 기법이다.  코사라주 알고리즘은 2번의 DFS로 구현되기 때문에 시간 복잡도는 DFS와 같은 O(n+m)이다. 
+>
+>SCC관련 링크
+>
+>https://jason9319.tistory.com/98
+>
+>https://blog.naver.com/PostView.nhn?blogId=ndb796&logNo=221236952158&redirect=Dlog&widgetTypeCall=true&directAccess=false
 >
 >
 

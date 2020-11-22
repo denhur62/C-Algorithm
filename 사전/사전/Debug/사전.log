@@ -1,8 +1,11 @@
-﻿  dictionaryFriend.c
-c:\users\denhu\documents\visual studio 2015\projects\사전\사전\dictionaryfriend.c(17): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+﻿  hash.cpp
+c:\users\denhu\documents\github\c-algorithm\사전\사전\hash.cpp(13): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
-c:\users\denhu\documents\visual studio 2015\projects\사전\사전\dictionaryfriend.c(19): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\denhu\documents\github\c-algorithm\사전\사전\hash.cpp(46): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
-c:\users\denhu\documents\visual studio 2015\projects\사전\사전\dictionaryfriend.c(13): warning C4715: 'findElement': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  사전.vcxproj -> c:\users\denhu\documents\visual studio 2015\Projects\사전\Debug\사전.exe
-  사전.vcxproj -> c:\users\denhu\documents\visual studio 2015\Projects\사전\Debug\사전.pdb (Full PDB)
+c:\users\denhu\documents\github\c-algorithm\사전\사전\hash.cpp(48): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+c:\users\denhu\documents\github\c-algorithm\사전\사전\hash.cpp(55): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
+  사전.vcxproj -> C:\Users\denhu\Documents\GitHub\C-Algorithm\사전\Debug\사전.exe
+  사전.vcxproj -> C:\Users\denhu\Documents\GitHub\C-Algorithm\사전\Debug\사전.pdb (Full PDB)

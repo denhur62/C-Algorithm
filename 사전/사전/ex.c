@@ -1,71 +1,271 @@
 #include<stdio.h>
-#include<stdint.h>
+#include<stdlib.h>
+#include<limits.h>
+#define MAX INT_MAX
 
-#define CRC16 0x8005
+typedef enum { false, true } bool;
 
-uint16_t gen_crc16(const uint8_t *data, uint16_t size)
-{
-	uint16_t out = 0;
-	int bits_read = 0, bit_flag;
+typedef struct Node {
+	int vertexNum;
+	int distance;
+} Node;
 
+typedef struct Edge {
+	struct Edge *next;
+	int oppositeVertexNum;
+	int weight;
+} Edge;
 
-	// test
-	printf("buffer in function %s\n", data);
+typedef struct Vertex {
+	int vertexNum;
+	int d;
+	Edge *incidentEdges;
+	Edge *parent;
+} Vertex;
 
-	/* Sanity check: */
-	if (data == NULL)
-		return 0;
+typedef struct Graph {
+	Vertex **vertices;
+} Graph;
 
-	while (size > 0)
-	{
-		bit_flag = out >> 15;
+int n, m;
+Graph *G;
 
-		/* Get next bit: */
-		out <<= 1;
-		out |= (*data >> bits_read) & 1; // item a) work from the least significant bits
+int* MST;
+int indexOfMST = 0;
+int totalWeight = 0;
 
-										 /* Increment bit counter: */
-		bits_read++;
-		if (bits_read > 7)
-		{
-			bits_read = 0;
-			data++;
-			size--;
-		}
+// 큐 관련 
+Node *queue;
+int queueSize;
 
-		/* Cycle check: */
-		if (bit_flag)
-			out ^= CRC16;
-
-	}
-
-	// item b) "push out" the last 16 bits
-	int i;
-	for (i = 0; i < 16; ++i) {
-		bit_flag = out >> 15;
-		out <<= 1;
-		if (bit_flag)
-			out ^= CRC16;
-	}
-
-	// item c) reverse the bits
-	uint16_t crc = 0;
-	i = 0x8000;
-	int j = 0x0001;
-	for (; i != 0; i >>= 1, j <<= 1) {
-		if (i & out) crc |= j;
-	}
-
-	return crc;
+void nodeSwap(Node *a, Node *b) {
+	Node temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-int main()
-{
-	char buf[] = "123456789";
-	int c, r;
-	printf("the buf has %s", buf);
-	r = gen_crc16(buf, sizeof(buf) - 1);
-	printf("%04hx\n", r);
+void downHeap(int index) {
 
-	return (0);
+	while (index <= queueSize / 2) {
+		int child = index * 2;
+		if (child + 1 <= queueSize && queue[child].distance < queue[child + 1].distance)
+			child++;
+
+		if (queue[index].distance < queue[child].distance) {
+			nodeSwap(&queue[index], &queue[child]);
+			index = child;
+		}
+		else
+			break;
+	}
+}
+
+void buildHeap() {
+
+	for (int i = queueSize / 2; i >= 1; --i)
+		downHeap(i);
+}
+
+void enqueue(int vertexNum, int distance) {
+
+	Node newNode;
+	newNode.vertexNum = vertexNum;
+	newNode.distance = distance;
+
+	queue[++queueSize] = newNode;
+}
+
+int removeMin() {
+
+	Node minNode = queue[1];
+	int minVertexNum = minNode.vertexNum;
+
+	MST[indexOfMST++] = minVertexNum;
+	totalWeight += minNode.distance;
+
+	queue[1] = queue[queueSize--];
+	downHeap(1);
+
+	return minVertexNum;
+}
+
+bool isEmpty() {
+	return queueSize == 0;
+}
+
+bool isInQueue(int vertexNum) {
+
+	for (int i = 1; i <= queueSize; ++i) {
+		if (queue[i].vertexNum == vertexNum)
+			return true;
+	}
+
+	return false;
+}
+
+void replaceKey(int vertexNum, int weight) {
+
+	for (int i = 1; i <= queueSize; ++i) {
+		if (queue[i].vertexNum == vertexNum)
+			queue[i].distance = weight;
+	}
+
+	buildHeap();
+}
+
+// 큐 관련 끝 
+
+Edge* createEdge(int oppositeVertexNum, int weight) {
+
+	Edge *newEdge = (Edge*)malloc(sizeof(Edge));
+
+	newEdge->next = NULL;
+	newEdge->oppositeVertexNum = oppositeVertexNum;
+	newEdge->weight = weight;
+
+	return newEdge;
+}
+
+Vertex* createVertex(int vertexNum) {
+
+	Vertex *newVertex = (Vertex*)malloc(sizeof(Vertex));
+
+	newVertex->vertexNum = vertexNum;
+	newVertex->parent = NULL;
+	// 헤더 
+	newVertex->incidentEdges = createEdge(0, 0);
+
+	return newVertex;
+}
+
+void addFirst(Edge* list, int oppositeVertexNum, int weight) {
+
+	Edge *newEdge = createEdge(oppositeVertexNum, weight);
+
+	newEdge->next = list->next;
+	list->next = newEdge;
+}
+
+void insertDirectedEdge(int v, int u, int weight) {
+
+	addFirst(G->vertices[v]->incidentEdges, u, weight);
+	addFirst(G->vertices[u]->incidentEdges, v, weight);
+}
+
+void createGraph() {
+
+	// 정점의 수
+	scanf("%d%d", &n, &m);
+
+	G = (Graph*)malloc(sizeof(Graph));
+
+	G->vertices = (Vertex**)malloc((n + 1) * sizeof(Vertex*));
+	for (int i = 1; i <= n; ++i)
+		G->vertices[i] = createVertex(i);
+
+	int u, v, weight;
+	for (int i = 0; i<m; ++i) {
+		scanf("%d%d%d", &u, &v, &weight);
+		insertDirectedEdge(u, v, weight);
+	}
+
+	MST = (int*)malloc(n * sizeof(int));
+
+	// 큐 생성
+	queue = (Node*)malloc((n + 1) * sizeof(Node));
+}
+
+int getWeight(int v, int u) {
+
+	Edge *horse = G->vertices[v]->incidentEdges->next;
+
+	while (horse != NULL) {
+
+		if (horse->oppositeVertexNum == u)
+			return horse->weight;
+
+		horse = horse->next;
+	}
+}
+
+void primJamik() {
+
+	// 1
+	for (int i = 1; i <= n; ++i) {
+		G->vertices[i]->d = MAX;
+		G->vertices[i]->parent = NULL;
+	}
+
+	// 2,3
+	G->vertices[1]->d = 0;
+
+	// 4
+	for (int i = 1; i <= n; ++i)
+		enqueue(i, G->vertices[i]->d);
+
+	// 힙 구조화 
+	buildHeap();
+
+	// 5
+
+	while (!isEmpty()) {
+
+		int u = removeMin();
+
+		// 헤더 건너 띄고 
+		Edge *e = G->vertices[u]->incidentEdges->next;
+		while (e != NULL) {
+
+			int z = e->oppositeVertexNum;
+
+			if (isInQueue(z) && getWeight(u, z) > G->vertices[z]->d) {
+
+				G->vertices[z]->d = getWeight(u, z);
+				G->vertices[z]->parent = e;
+
+				replaceKey(z, getWeight(u, z));
+			}
+
+			e = e->next;
+		}
+	}
+}
+
+void freeGraph() {
+
+	for (int i = 1; i <= n; ++i) {
+
+		Vertex *vertex = G->vertices[i];
+
+		Edge *horseBefore = vertex->incidentEdges;
+		Edge *horse = vertex->incidentEdges->next;
+
+		while (horse != NULL) {
+			free(horseBefore);
+
+			horseBefore = horse;
+			horse = horse->next;
+		}
+
+		free(vertex);
+	}
+
+	free(G);
+	free(MST);
+	free(queue);
+}
+
+int main() {
+
+	createGraph();
+
+	primJamik();
+
+	for (int i = 0; i<n; ++i)
+		printf(" %d", MST[i]);
+	printf("\n");
+
+	printf("%d", totalWeight);
+
+	freeGraph();
 }
